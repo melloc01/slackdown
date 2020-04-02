@@ -1,5 +1,6 @@
 "use strict";
-require.config({
+var requirejs = require('requirejs');
+requirejs.config({
     paths: {
         'slackdown': '../../dist/slackdown.min',
         'QUnit': '../../bower_components/qunit/qunit/qunit',
@@ -17,7 +18,7 @@ require.config({
     }
 });
 
-require(['QUnit', 'slackdown', 'text!tests'],
+requirejs(['QUnit', 'slackdown', 'text!tests'],
     function(QUnit, slackdown, tests) {
 
         //Loading the test as text and using eval to avoid having to write all tests twice

@@ -2,9 +2,9 @@ var slackdown = require('../../dist/slackdown.min');
 
 // Simple test to verify that slackdown loads correctly
 
-var expected = 'Hi <span class="slack-user">bill</span>! Please join <span class="slack-channel">general</span> and say hello.';
+var expected = 'The third <strong>word</strong> is bold. Surround text with <em>underscores</em> for italics';
 
-var actual = slackdown.parse('Hi <@U12345|bill>! Please join <#C123456|general> and say hello.');
+var actual = slackdown.parse('The third *word* is bold. Surround text with _underscores_ for italics');
 
 if(actual == expected) {
     console.info("All OK! Output:", actual);

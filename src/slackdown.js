@@ -10,7 +10,6 @@
 }(this, function () {
 
     var RE_ALPHANUMERIC = new RegExp('^\\w?$'),
-        RE_TAG = new RegExp('<(.+?)>', 'g'),
         RE_BOLD = new RegExp('\\*([^\\*]+?)\\*', 'g'),
         RE_ITALIC = new RegExp('_([^_]+?)_', 'g'),
         RE_FIXED = new RegExp('`([^`]+?)`', 'g');
@@ -40,25 +39,6 @@
             }
         }
         return html.concat('>', payload, '</', tag, '>');
-    };
-
-    var matchTag = function(match) {
-        var action = match[1].substr(0,1),
-            p;
-
-        switch(action) {
-            case "!":
-                return tag("span", { class: "slack-cmd" }, payloads(match[1], 1)[0]);
-            case "#":
-                p = payloads(match[1], 2);
-                return tag("span", { class: "slack-channel"}, (p.length === 1 ? p[0] : p[1]));
-            case "@":
-                p = payloads(match[1], 2);
-                return tag("span", { class: "slack-user" }, (p.length === 1 ? p[0] : p[1]));
-            default:
-                p = payloads(match[1]);
-                return tag("a", { href: p[0] }, (p.length === 1 ? p[0] : p[1]));
-        }
     };
 
     var matchBold = function(match) {
@@ -105,7 +85,6 @@
 
         if(typeof text === 'string') {
             var patterns = [
-                {p: RE_TAG, cb: matchTag},
                 {p: RE_BOLD, cb: matchBold},
                 {p: RE_ITALIC, cb: matchItalic},
                 {p: RE_FIXED, cb: matchFixed}

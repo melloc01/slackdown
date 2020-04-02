@@ -23,6 +23,7 @@
   "devDependencies": {
       "grunt": "*",
       "grunt-contrib-watch": "*",
-      "grunt-contrib-uglify": "*"
+      "grunt-contrib-uglify": "*",
+      "requirejs": "*"
   }
 }
